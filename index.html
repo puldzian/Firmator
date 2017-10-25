@@ -4,13 +4,50 @@
     <meta name="author" content="Piotr Puldzian Płucienniczak" />
     <meta name="description" content="Pętla historii zaciska się." />
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
-    <link type="text/css" rel="stylesheet" href="reghipo.css" />
+    <link type="text/css" rel="stylesheet" href="firmator.css" />
+    <script src="libs/jquery-2.1.4.min.js"></script>
+    <script src="branze.js"></script>
     <script src="firmy.js"></script>
-    <title>ZAŁÓŻ FIRMY | Puldzian | Rozdzielczość Chleba</title>
+    <script src="firmator.js"></script>
+    <title>ZAŁÓŻ FIRMY | Puldzian</title>
 </head>
 
 <body>
 
+<div class="wszystko">
+  <!-- To kontroluje całą stronkę. -->
+  <div class="srodek">
+        <center>
+        <!-- FIRMA -->
+        <div class="nazwa">
+          <p>Firma:</p>
+          <div id="jsFirma">Firma</div>
+        </div>
+        <!-- WARIANTY -->
+        <div class="wariant">
+          <p>Warianty:</p>
+          <span id="jsWariant1">Wariant1</span>, <span id="jsWariant2">Wariant2</span>, <span id="jsWariant3">Wariant3</span>, <span id="jsWariant4">Wariant4</span>, <span id="jsWariant5">Wariant5</span>
+        </div>
+        <!-- BRANŻE -->
+        <div class="branza">
+          <p>Branże:</p>
+          <div id="jsBranza1">Branża 1</div>
+          <div id="jsBranza2">Branża 2</div>
+          <div id="jsBranza3">Branża 3</div>
+        </div>
+
+        <div class="przyciski">
+            <div id="jsButtonFirma" onclick="rozrusznik()">DAJ NOWO FIRME</div>
+            <!--
+            <div id="jsButtonWariant">DAJ NOWY WARIANT</div>
+            <div id="jsButtonBranza">DAJ NOWE BRANZE</div>
+            -->
+        </div>
+        </center>
+  </div>
+</div>
+
+<!--
 // JAK BY TO WYGLĄDAŁO??
 // na środku nazwa firmy (z możliwością skrollowania << i >>)
 // a pod spodem po chwili wyświetlają się możliwe warianty
@@ -19,5 +56,6 @@
 // i jeszcze kilka trzeba domyślić...
 // E TO NIE oraz przycisk sprawdź w google (albo to raczej przy każdym)
 // A TO RACZEJ TAK na dole może być - dodaj branże - 1-3 losowe branże
+-->
 </body>
 </html>
