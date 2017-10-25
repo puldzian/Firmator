@@ -11,6 +11,47 @@ var losuj = function (n) {
 };
 
 // Osobny generator wariantów nazw
+var generatorWariantow = function () {
+    "use strict";
+    // Wariant -ex
+    var wariantex = firma + "ex";
+    $("#jsWariant1").html(wariantex);
+    // Wariant Eko-
+    var ekowariant = "Eko" + firma.toLowerCase();
+    $("#jsWariant2").html(ekowariant);
+    // Wariant -pol
+    var wariantpol = firma + "pol";
+    $("#jsWariant3").html(wariantpol);
+    // Wariant -bud
+    var wariantbud = firma + "bud";
+    $("#jsWariant4").html(wariantbud);
+    // Wariant agro-
+    var agrowariant = "Agro" + firma.toLowerCase();
+    $("#jsWariant5").html(agrowariant);
+    // Wariant inter-
+    var interwariant = "Inter" + firma.toLowerCase();
+    $("#jsWariant6").html(interwariant);
+    // Wariant euro-
+    var eurowariant = "Euro" + firma.toLowerCase();
+    $("#jsWariant7").html(eurowariant);
+    // Wariant elektro-
+    var elektrowariant = "Elektro" + firma.toLowerCase();
+    $("#jsWariant8").html(elektrowariant);
+    // Wariant pro-
+    var prowariant = "Pro" + firma.toLowerCase();
+    $("#jsWariant9").html(prowariant);
+    // Wariant -med
+    var wariantmed = firma + "med";
+    $("#jsWariant10").html(wariantmed);
+    // Wariant -o
+    var warianto = firma + "o";
+    $("#jsWariant11").html(warianto);
+    // Wariant -eo
+    var warianteo = firma + "eo";
+    $("#jsWariant12").html(warianteo);                             
+
+    //  pro-, -med, %twojeimie-,-eko,
+};
 
 // Osobny generator branż
 var generatorBranzy = function (seed) {
@@ -61,6 +102,7 @@ var glownaPetla = function () {
     "use strict";
     generatorFirmy();
     generatorBranzy();
+    generatorWariantow();
 };
 
 // Kliknij i wygeneruj
