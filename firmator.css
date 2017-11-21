@@ -6,38 +6,44 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 body {
     background-color: white;
     color: black;
-    font-family: Serif;
+    font-family: sans-serif;
+}
+.wszystko {
+  background: yellow;
+  background-image: url(OrzelSam.png);
+  background-position: -100% -40%;
+  background-repeat: repeat-y;
+  height: 100%;
 }
 
 /* STRUKTURA */
 .srodek {
-  border:1px solid gray;
+  display: block;
+  height:80%;
   margin:0 auto;
-  padding:10px 10px;
+  overflow: hidden;
   width:800px;
 }
 .srodek p {
-  color: gray;
+  color: black;
   font-style: italic;
   font-size:18px;
+  /* font-weight: bold; */
+}
+.zawartoscsrodka {
+  padding:250px 20px 0px;
+}
+
+#jsFirma1, #jsFirma2 , #jsFirma3 {
+  font-size:60px;
   font-weight: bold;
 }
 
-#jsFirma {
-  font-size:60px;
-  font-weight: bold;
-  height: 90px;
-}
 .branza {
   font-size:18px;
-  margin:10px 20px;
-  height: 120px;
+  margin-top:30px;
 }
-.wariant {
-  font-size:18px;
-  margin:10px 20px;
-  height: 120px;
-}
+
 .przyciski {
   font-size:24px;
   margin:10px 20px;
@@ -46,4 +52,18 @@ body {
 .przyciski div {
   margin:5px 5px;
   font-weight: bold;
+}
+
+.dolek {
+  background: black;
+  color: yellow;
+  display: block;
+  font-size:20px;
+  height:20%;
+  line-height: 1.2em;
+}
+.zawartoscdolka {
+  margin:0 auto;
+  padding:20px;
+  width:800px;
 }

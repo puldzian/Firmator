@@ -1,56 +1,17 @@
-/*global $, document, firmy, branze*/
+/*global $, document, poczatek, srodek, koncowka, branze*/
 
-var bazaF = firmy.length,
+var baza1 = poczatek.length,
+    baza2 = srodek.length,
+    baza3 = koncowka.length,
     bazaB = branze.length,
-    firma;
+    firma1,
+    firma2,
+    firma3;
 
 // Losuje któryś z N - 1 elementów
 var losuj = function (n) {
     "use strict";
     return Math.floor(Math.random() * n);
-};
-
-// Osobny generator wariantów nazw
-var generatorWariantow = function () {
-    "use strict";
-    // Wariant -ex
-    var wariantex = firma + "ex";
-    $("#jsWariant1").html(wariantex);
-    // Wariant Eko-
-    var ekowariant = "Eko" + firma.toLowerCase();
-    $("#jsWariant2").html(ekowariant);
-    // Wariant -pol
-    var wariantpol = firma + "pol";
-    $("#jsWariant3").html(wariantpol);
-    // Wariant -bud
-    var wariantbud = firma + "bud";
-    $("#jsWariant4").html(wariantbud);
-    // Wariant agro-
-    var agrowariant = "Agro" + firma.toLowerCase();
-    $("#jsWariant5").html(agrowariant);
-    // Wariant inter-
-    var interwariant = "Inter" + firma.toLowerCase();
-    $("#jsWariant6").html(interwariant);
-    // Wariant euro-
-    var eurowariant = "Euro" + firma.toLowerCase();
-    $("#jsWariant7").html(eurowariant);
-    // Wariant elektro-
-    var elektrowariant = "Elektro" + firma.toLowerCase();
-    $("#jsWariant8").html(elektrowariant);
-    // Wariant pro-
-    var prowariant = "Pro" + firma.toLowerCase();
-    $("#jsWariant9").html(prowariant);
-    // Wariant -med
-    var wariantmed = firma + "med";
-    $("#jsWariant10").html(wariantmed);
-    // Wariant -o
-    var warianto = firma + "o";
-    $("#jsWariant11").html(warianto);
-    // Wariant -eo
-    var warianteo = firma + "eo";
-    $("#jsWariant12").html(warianteo);                             
-
-    //  pro-, -med, %twojeimie-,-eko,
 };
 
 // Osobny generator branż
@@ -91,10 +52,16 @@ var generatorFirmy = function (seed) {
         seed = 0;
     }
     if (seed === 0) {
-        var numerek = losuj(bazaF);
-        firma = firmy[numerek];
+        var numerek1 = losuj(baza1),
+            numerek2 = losuj(baza2),
+            numerek3 = losuj(baza3);
+        firma1 = poczatek[numerek1];
+        firma2 = srodek[numerek2];
+        firma3 = koncowka[numerek3];
     }
-    $("#jsFirma").html(firma);
+    $("#jsFirma1").html(firma1);
+    $("#jsFirma2").html(firma2);
+    $("#jsFirma3").html(firma3);
 };
 
 // Odświeżanie ekranu i przejazd przez wszystko
@@ -102,7 +69,6 @@ var glownaPetla = function () {
     "use strict";
     generatorFirmy();
     generatorBranzy();
-    generatorWariantow();
 };
 
 // Kliknij i wygeneruj
@@ -115,5 +81,6 @@ var rozrusznik = function () {
 // Ważne; sprawdź, czy nie przybywa z określonego URLem ziarna
 $(document).ready(function () {
     "use strict";
-    // Tutaj będzie
+    // Tutaj będzie co:
+    // może uzgadnianie seeda przy ładowaniu strony
 });

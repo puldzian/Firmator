@@ -6,7 +6,7 @@
     <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
     <link type="text/css" rel="stylesheet" href="firmator.css" />
     <script src="libs/jquery-2.1.4.min.js"></script>
-    <script src="libs/seedrandom.min.js"></script>    
+    <script src="libs/seedrandom.min.js"></script>
     <script src="branze.js"></script>
     <script src="firmy.js"></script>
     <script src="firmator.js"></script>
@@ -18,46 +18,55 @@
 <div class="wszystko">
   <!-- To kontroluje całą stronkę. -->
   <div class="srodek">
-        <center>
         <!-- FIRMA -->
+      <div class="zawartoscsrodka">
+        <!-- <p>Firma</p> -->
         <div class="nazwa">
-          <p>Firma:</p>
-          <div id="jsFirma">Firma</div>
+          <span id="jsFirma1">1</span>
+          <span id="jsFirma2">2</span>
+          <span id="jsFirma3">3</span>
         </div>
-        <!-- WARIANTY -->
-        <div class="wariant">
-          <p>Warianty:</p>
-          <span id="jsWariant1">Wariant1</span>, <span id="jsWariant2">Wariant2</span>, <span id="jsWariant3">Wariant3</span>, <span id="jsWariant4">Wariant4</span>, <span id="jsWariant5">Wariant5</span>, <span id="jsWariant6">Wariant6</span>, <span id="jsWariant7">Wariant7</span>, <span id="jsWariant8">Wariant8</span>, <span id="jsWariant9">Wariant9</span>, <span id="jsWariant10">Wariant10</span>, <span id="jsWariant11">Wariant11</span>, <span id="jsWariant12">Wariant12</span>
 
-        </div>
-        <!-- BRANŻE -->
+        <!-- BRANŻA -->
         <div class="branza">
-          <p>Branże:</p>
-          <div id="jsBranza1">Branża 1</div>
-          <div id="jsBranza2">Branża 2</div>
-          <div id="jsBranza3">Branża 3</div>
+          <!-- <p>Branża</p> -->
+          <div id="jsBranza1"><br/><br/></div>
         </div>
 
+
+        <!-- PRZYCISK -->
         <div class="przyciski">
-            <div id="jsButtonFirma" onclick="rozrusznik()">DAJ NOWO FIRME</div>
-            <!--
-            <div id="jsButtonWariant">DAJ NOWY WARIANT</div>
-            <div id="jsButtonBranza">DAJ NOWE BRANZE</div>
-            -->
+            <button class="click-trigger" data-click-id="click-001" id="jsButtonFirma" onclick="rozrusznik()">DAJ NOWO FIRME</button>
         </div>
-        </center>
+      </div>
+  </div>
+  <!-- tu jest stopka -->
+  <div class="dolek">
+    <div class="zawartoscdolka">
+      <p>Ojczyzna jest w potrzebie! Musisz założyć firmę, żeby generować produkt narodowy brutto i załatać dziurę budżetową.</p>
+      <p>Założono firm: 666</p>
+    </div>
   </div>
 </div>
 
-<!--
-// JAK BY TO WYGLĄDAŁO??
-// na środku nazwa firmy (z możliwością skrollowania << i >>)
-// a pod spodem po chwili wyświetlają się możliwe warianty
-// z uwzględnieniem łączenia głosek, tak więc przez IFy
-//  -pol, -ex, -bud, agro-, in-, -eo, euro-, elektro-, pro-, -med, %twojeimie-, eko- i -eko,
-// i jeszcze kilka trzeba domyślić...
-// E TO NIE oraz przycisk sprawdź w google (albo to raczej przy każdym)
-// A TO RACZEJ TAK na dole może być - dodaj branże - 1-3 losowe branże
--->
+<!-- http://www.dynamicdrive.com/forums/entry.php?322-Click-Counter-with-Flat-File-Storage-(text-file)-AJAX-amp-PHP -->
+<script>
+var clicks = document.querySelectorAll('.click-trigger'); // IE8
+for(var i = 0; i < clicks.length; i++){
+	clicks[i].onclick = function(){
+		var id = this.getAttribute('data-click-id');
+		var post = 'id='+id; // post string
+		var req = new XMLHttpRequest();
+		req.open('POST', 'counter.php', true);
+		req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+		req.onreadystatechange = function(){
+			if (req.readyState != 4 || req.status != 200) return;
+			document.getElementById(id).innerHTML = req.responseText;
+			};
+		req.send(post);
+		}
+	}
+</script>
+
 </body>
 </html>
