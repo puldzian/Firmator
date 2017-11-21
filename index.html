@@ -44,7 +44,18 @@
   <div class="dolek">
     <div class="zawartoscdolka">
       <p>Ojczyzna jest w potrzebie! Musisz założyć firmę, żeby generować produkt narodowy brutto i załatać dziurę budżetową.</p>
-      <p>Założono firm: 666</p>
+
+      <?php
+
+      $clickcount = explode("\n", file_get_contents('counter.txt'));
+      foreach($clickcount as $line){
+      	$tmp = explode('||', $line);
+      	$count[trim($tmp[0])] = trim($tmp[1]);
+      	}
+
+      ?>
+
+      <p>Założono firm: <span id="click-001"><?php echo $count['click-001'];?></span></p>
     </div>
   </div>
 </div>
