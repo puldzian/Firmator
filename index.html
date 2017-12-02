@@ -45,39 +45,11 @@
     <div class="zawartoscdolka">
       <p>Ojczyzna jest w potrzebie! Musisz założyć firmę, żeby generować produkt narodowy brutto i załatać dziurę budżetową.</p>
 
-      <?php
-
-      $clickcount = explode("\n", file_get_contents('counter.txt'));
-      foreach($clickcount as $line){
-      	$tmp = explode('||', $line);
-      	$count[trim($tmp[0])] = trim($tmp[1]);
-      	}
-
-      ?>
-
-      <p>Założono firm: <span id="click-001"><?php echo $count['click-001'];?></span></p>
+      <p>Założono firm: <span id="click-001">ZERO</span></p>
     </div>
   </div>
 </div>
 
-<!-- http://www.dynamicdrive.com/forums/entry.php?322-Click-Counter-with-Flat-File-Storage-(text-file)-AJAX-amp-PHP -->
-<script>
-var clicks = document.querySelectorAll('.click-trigger'); // IE8
-for(var i = 0; i < clicks.length; i++){
-	clicks[i].onclick = function(){
-		var id = this.getAttribute('data-click-id');
-		var post = 'id='+id; // post string
-		var req = new XMLHttpRequest();
-		req.open('POST', 'counter.php', true);
-		req.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
-		req.onreadystatechange = function(){
-			if (req.readyState != 4 || req.status != 200) return;
-			document.getElementById(id).innerHTML = req.responseText;
-			};
-		req.send(post);
-		}
-	}
-</script>
 
 </body>
 </html>
