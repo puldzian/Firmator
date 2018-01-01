@@ -8,6 +8,26 @@ var baza1 = poczatek.length,
     firma2,
     firma3;
 
+var zniknij = function () {
+    $(".znikajace").animate({
+        opacity:0
+    });
+};
+var pojaw = function () {
+    $(".znikajace").animate({
+        opacity:1
+    });
+};
+
+$("button").click(function(){
+    $("div").animate({
+        left: '250px',
+        opacity: '0.5',
+        height: '150px',
+        width: '150px'
+    });
+});
+
 // Losuje któryś z N - 1 elementów
 var losuj = function (n) {
     "use strict";
@@ -67,8 +87,12 @@ var generatorFirmy = function (seed) {
 // Odświeżanie ekranu i przejazd przez wszystko
 var glownaPetla = function () {
     "use strict";
-    generatorFirmy();
-    generatorBranzy();
+    $(".znikajace").fadeOut();
+    setTimeout(function(){
+        generatorFirmy();
+        generatorBranzy();
+        $(".znikajace").fadeIn();
+    }, 400);
 };
 
 // Kliknij i wygeneruj

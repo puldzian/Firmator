@@ -9,11 +9,12 @@ body {
     font-family: sans-serif;
 }
 .wszystko {
-  background: yellow;
-  background-image: url(OrzelSam.png);
+  background: white;
+  /* background-image: url(OrzelSam.png);
   background-position: -100% -40%;
-  background-repeat: repeat-y;
+  background-repeat: repeat-y; */
   height: 100%;
+  text-align: center;
 }
 
 /* STRUKTURA */
@@ -22,7 +23,7 @@ body {
   height:80%;
   margin:0 auto;
   overflow: hidden;
-  width:800px;
+  max-width:800px;
 }
 .srodek p {
   color: black;
@@ -32,6 +33,9 @@ body {
 }
 .zawartoscsrodka {
   padding:250px 20px 0px;
+}
+.znikajace {
+    position: relative;
 }
 
 #jsFirma1, #jsFirma2 , #jsFirma3 {
@@ -56,7 +60,7 @@ body {
 
 .dolek {
   background: black;
-  color: yellow;
+  color: white;
   display: block;
   font-size:20px;
   height:20%;
@@ -65,5 +69,5 @@ body {
 .zawartoscdolka {
   margin:0 auto;
   padding:20px;
-  width:800px;
+  max-width:800px;
 }
