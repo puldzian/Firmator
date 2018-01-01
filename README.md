@@ -2,10 +2,11 @@
 WIP, generator nazw przedsiębiorstw na bazie FIRM
 
 ## TODO
-* czemu te spany tak źle wyglądają rozdzielone
-* czemu ten przycisk tak skacze
+* mobile first design
 * tło!!
 * przejrzeć wyrzutki z generatora
 * dodatkowe warianty generatora?
 * banner FIRMów
 * ^ plus stopka autorska
+* vibrate ^o^
+* check: czy litery się powtarzają
