@@ -5,13 +5,63 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 body {
     background-color: white;
-    color: black;
     font-family: sans-serif;
     height:100%;
     text-align: center;
 }
+.strona {
+    height:100%;
+    width:100%;
+}
+.gora {
+    background-color: yellow;
+    color: black;
+}
+.dol {
+    background-color: black;
+    color: yellow;
+}
+.zawartosc {
+    border:1px solid black;
+    max-width: 700px;
+    position: relative;
+}
+.dol .zawartosc {
+    border:1px solid yellow;
+}
 
-/* STRUKTURA */
+/* GÓRNA CZĘŚĆ */
+.nazwa {
+    font-size:8em;
+    margin-top:25%;
+}
+.branza {
+    font-size:3em;
+    margin-top:2%;
+}
+.przycisk {
+    font-size:2em;
+    margin-top:5%;
+    margin-top:2%;
+}
+
+/* DÓŁ */
+.opis {
+    font-size: 2em;
+    margin-top: 20%;
+}
+.banner {
+    background-color: yellow;
+    box-sizing: border-box;
+    color: black;
+    display: block;
+    font-size: 3em;
+    margin-top: 10%;
+    padding:30px;
+    width:400px;
+}
+
+/* STRUKTURA
 .srodek {
   display: block;
   background-image: url(img/punkt2.jpg);
@@ -41,7 +91,7 @@ body {
   text-shadow: 0 0 15px white;
 }
 #jsFirma1, #jsFirma2 , #jsFirma3 {
-  /* nic */
+  /* nic
 }
 .branza {
   font-size:24px;

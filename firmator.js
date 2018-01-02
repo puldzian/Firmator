@@ -87,6 +87,7 @@ var generatorFirmy = function (seed) {
 // Odświeżanie ekranu i przejazd przez wszystko
 var glownaPetla = function () {
     "use strict";
+    navigator.vibrate(200);
     $(".znikajace").fadeOut();
     setTimeout(function(){
         generatorFirmy();
