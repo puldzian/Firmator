@@ -10,3 +10,4 @@ WIP, generator nazw przedsiębiorstw na bazie FIRM
 * ^ plus stopka autorska
 * vibrate ^o^
 * check: czy litery się powtarzają
+* ustawić czcionty poprawne

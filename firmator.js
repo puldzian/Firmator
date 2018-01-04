@@ -87,7 +87,7 @@ var generatorFirmy = function (seed) {
 // Odświeżanie ekranu i przejazd przez wszystko
 var glownaPetla = function () {
     "use strict";
-    navigator.vibrate(200);
+    // navigator.vibrate(200); to nie jest potrzebne :)
     $(".znikajace").fadeOut();
     setTimeout(function(){
         generatorFirmy();

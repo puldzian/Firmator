@@ -5,7 +5,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 body {
     background-color: white;
-    font-family: sans-serif;
+    font-family: "Cantarell", sans-serif;
     height:100%;
     text-align: center;
 }
@@ -32,11 +32,12 @@ body {
 
 /* GÓRNA CZĘŚĆ */
 .nazwa {
-    font-size:8em;
+    font-size:5em;
+    font-weight: bold;
     margin-top:25%;
 }
 .branza {
-    font-size:3em;
+    font-size:2.5em;
     margin-top:2%;
 }
 .przycisk {
@@ -88,15 +89,7 @@ body {
 .znikajace {
     position: relative;
 }
-.nazwa {
-  font-size:80px;
-  font-weight: bold;
-  height:80px;
-  text-shadow: 0 0 15px white;
-}
-#jsFirma1, #jsFirma2 , #jsFirma3 {
-  /* nic
-}
+
 .branza {
   font-size:24px;
   height:100px;
