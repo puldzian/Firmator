@@ -6,7 +6,8 @@ var baza1 = poczatek.length,
     bazaB = branze.length,
     firma1,
     firma2,
-    firma3;
+    firma3,
+    firstLaunch = 1;
 
 var zniknij = function () {
     $(".znikajace").animate({

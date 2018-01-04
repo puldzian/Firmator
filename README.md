@@ -2,12 +2,12 @@
 WIP, generator nazw przedsiębiorstw na bazie FIRM
 
 ## TODO
-* mobile first design
-* tło!!
-* przejrzeć wyrzutki z generatora
-* dodatkowe warianty generatora?
-* banner FIRMów
-* ^ plus stopka autorska
-* vibrate ^o^
-* check: czy litery się powtarzają
-* ustawić czcionty poprawne
+* STYL: banner firm na drugim ekranie
+* STYL: czcionty poprawne
+* DICT: analiza generatora
+* DICT: zrobienie pod-ścieżek
+* DICT: czy litery się powtarzają
+* BONUS: wersja samogrająca
+* BONUS: vibrate
+* BONUS: animacje z VUE?
+* BONUS: wersja adekwatna mobilnie?

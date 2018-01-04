@@ -15,6 +15,9 @@ body {
 }
 .gora {
     background-color: yellow;
+    background-image: url(img/nogiorla300.jpg);
+    background-position: top center;
+    background-repeat: no-repeat;
     color: black;
 }
 .dol {
@@ -22,105 +25,58 @@ body {
     color: yellow;
 }
 .zawartosc {
-    border:1px solid black;
+    display:block;
+    /* border:1px solid black; */
     max-width: 700px;
+    overflow:hidden;
     position: relative;
-}
-.dol .zawartosc {
-    border:1px solid yellow;
 }
 
 /* GÓRNA CZĘŚĆ */
 .nazwa {
     font-size:5em;
     font-weight: bold;
-    margin-top:25%;
+    height:95px;
+    margin-top:40%;
 }
 .branza {
-    font-size:2.5em;
-    margin-top:2%;
+    font-size:2em;
+    height:170px;
 }
 .przycisk {
-    font-size:2em;
+    background: black;
+    border: none;
+    border-radius: 6px;
+    color: yellow;
+    display: inline-block;
+    font-size:1.6em;
     margin-top:5%;
     margin-top:2%;
+    padding:10px 15px;
+    text-transform: uppercase;
 }
-
 /* DÓŁ */
-.opis {
-    font-size: 1.2em;
-    margin-top: 10%;
-}
-.dol p {
-
-}
 .banner {
-    background-color: yellow;
     box-sizing: border-box;
-    color: black;
+    color: yellow;
     display: block;
     font-size: 1.2em;
     line-height: 1.1em;
-    margin-top: 5%;
+    margin-top: 15%;
     padding:30px;
 }
-
-
-/* STRUKTURA
-.srodek {
-  display: block;
-  background-image: url(img/punkt2.jpg);
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  height:75%;
-  overflow: hidden;
+.dol a {
+    border: 0;
 }
-.srodek p {
-  color: black;
-  font-style: italic;
-  font-size:18px;
-}
-.zawartoscsrodka {
-  padding:220px 20px 0px;
-  max-width:800px;
-    margin:0 auto;
-}
-.znikajace {
-    position: relative;
-}
-
-.branza {
-  font-size:24px;
-  height:100px;
-  margin-top:30px;
-  text-shadow: 0 0 5px white;
-}
-
-.przyciski {
-  font-size:24px;
-  margin:10px 20px;
-  height: 100px;
-}
-.przyciski div {
-  margin:5px 5px;
-  font-weight: bold;
-}
-
-.dolek {
-  background: black;
-  color: white;
-  display: block;
-  font-size:20px;
-  height:25%;
-  line-height: 1.2em;
-}
-.zawartoscdolka {
-  margin:0 auto;
-  padding:20px;
-  max-width:800px;
-}
-a.dochleba {
+.dol a:link, .dol a:visited {
+    background: black;
     color:yellow;
-    font-weight: bold;
+}
+.dol a:hover, .dol a:active {
+    background: yellow;
+    color: black;
+    transition-duration: 0.5s;
+}
+.under {
+    text-decoration: underline;
 }
