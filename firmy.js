@@ -1,4 +1,8 @@
 // TEN PLIK ZAWIERA ELEMENTY SKŁADOWE, KTÓRE BĘDĄ LOSOWANE PRZEZ MASZYNĘ LOSUJĄCĄ
+
+// 100 najpopularniejszych imion w Polsce
+var imionaWszystkie = ["Anna", "Maria", "Piotr", "Krzysztof", "Kasia", "Andrzej", "Gosia", "Jan", "Aga", "Stach", "Basia", "Tomasz", "Krystyna", "Paweł", "Ewa", "Marcin", "Ela", "Michał", "Zofia", "Marek", "Teresa", "Greg", "Magda", "Józef", "Asia", "Łuk", "Janina", "Jana", "Adam", "Monika", "Monia", "Zbig", "Danuta", "Jerzy", "Jadwiga", "Jadzia", "Tadeusz", "Aleksandra", "Ola", "Mateusz", "Halina", "Hela", "Dariusz", "Darek", "Irena", "Mariusz", "Beata", "Wojciech", "Wojtek", "Marta", "Ryszard", "Dorota", "Jakub", "Kuba", "Helena", "Henryk", "Henio", "Karolina", "Robert", "Grażyna", "Rafał", "Jolanta", "Kazimierz", "Kazik", "Iwona", "Jacek", "Marianna", "Maciej", "Natalia", "Kamil", "Bożena", "Janusz", "Stanisława", "Staszka", "Marian", "Justyna", "Mirosław", "Mirek", "Paulina", "Jarosław", "Jarek", "Urszula", "Ula", "Sławomir", "Sławek", "Alicja", "Dawid", "Renata", "Wiesław", "Sylwia", "Artur", "Arti", "Agata", "Roman", "Romek", "Aneta", "Damian", "Patrycja", "Pati", "Przemysław", "Przemo", "Przemek", "Przemko", "Izabela", "Iza", "Sebastian", "Seba", "Ewelina", "Daniel", "Julia", "Władysław", "Władek", "Wanda", "Zdzisław", "Zdzichu", "Zdziś", "Marzena", "Patryk", "Wiesława", "Wiesia", "Bartosz", "Bartek", "Weronika", "Wera", "Edward", "Wiktoria", "Wiki", "Mieczysław", "Mietek", "Klaudia", "Leszek"
+        ];
 var poczatek = ["Aa",
         "Ab",
         "Abi",
