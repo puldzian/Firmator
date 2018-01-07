@@ -1,9 +1,12 @@
-/*global $, document, poczatek, srodek, koncowka, branze*/
+/*global $, document, poczatek, srodek, koncowka, branze, imionaWszystkie, imionaZenskie */
 
 var baza1 = poczatek.length,
     baza2 = srodek.length,
     baza3 = koncowka.length,
     bazaB = branze.length,
+    imionaB = imionaWszystkie.length,
+    imionaZenskieB = imionaZenskie.length,
+    koncowkaZenskaB = koncowkaZenska.length,
     firma1,
     firma2,
     firma3,
@@ -66,6 +69,31 @@ var generatorBranzy = function (seed) {
     }
 };
 
+// Nowy generator firm, który będzie miał podsilniki
+var nowyGenerator = function (seed) {
+    "use strict";
+    var nrSilnika = losuj(2);
+    switch(nrSilnika) {
+        case 0:
+            // SAMO IMIĘ ŻEŃSKIE
+            var nr1 = losuj(imionaZenskieB);
+            firma1 = imionaZenskie[nr1];
+            $("#jsFirma1").html(firma1);
+            break;
+        case 1:
+            // IMIĘ ŻEŃSKIE + KOŃCÓWKA
+            var nr1 = losuj(imionaZenskieB),
+                nr2 = losuj(koncowkaZenskaB);
+            firma1 = imionaZenskie[nr1],
+            firma2 = koncowkaZenska[nr2];
+            $("#jsFirma1").html(firma1),
+            $("#jsFirma2").html(firma2);
+            break;
+        default:
+            $("#jsFirma1").html("CHUJ");
+    }
+}
+
 // Główna funkcja generująca - Firme
 var generatorFirmy = function (seed) {
     "use strict";
@@ -91,7 +119,7 @@ var glownaPetla = function () {
     // navigator.vibrate(200); to nie jest potrzebne :)
     $(".znikajace").fadeOut();
     setTimeout(function(){
-        generatorFirmy();
+        nowyGenerator();
         generatorBranzy();
         $(".znikajace").fadeIn();
     }, 400);

@@ -32,6 +32,17 @@ body {
     position: relative;
 }
 
+.devconsole {
+    display: block;
+    font-size: 10px;
+    left:0;
+    position: absolute;
+    text-align: left;
+    top:0;
+    width:150px;
+}
+
+
 /* GÓRNA CZĘŚĆ */
 .nazwa {
     font-size:5em;
@@ -76,6 +87,10 @@ body {
     background: yellow;
     color: black;
     transition-duration: 0.5s;
+}
+
+.pogrub {
+    font-weight: bold;
 }
 .under {
     text-decoration: underline;
