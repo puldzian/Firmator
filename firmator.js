@@ -1,38 +1,12 @@
-/*global $, document, poczatek, srodek, koncowka, branze, imionaWszystkie, imionaZenskie */
+/*global $, document, branze, setTimeout, imionaZenskie, koncowkaZenska */
 
-var baza1 = poczatek.length,
-    baza2 = srodek.length,
-    baza3 = koncowka.length,
-    bazaB = branze.length,
-    imionaB = imionaWszystkie.length,
-    imionaZenskieB = imionaZenskie.length,
-    koncowkaZenskaB = koncowkaZenska.length,
-    firma1,
-    firma2,
-    firma3,
-    firstLaunch = 1;
+// Dlugosc zbioru branz
+var BRANZE_N = branze.length,
+    IMIONAZEN_N = imionaZenskie.length,
+    KONCOWKAZEN_N = koncowkaZenska.length,
+    trybGeneratora = 0;
 
-var zniknij = function () {
-    $(".znikajace").animate({
-        opacity:0
-    });
-};
-var pojaw = function () {
-    $(".znikajace").animate({
-        opacity:1
-    });
-};
-
-$("button").click(function(){
-    $("div").animate({
-        left: '250px',
-        opacity: '0.5',
-        height: '150px',
-        width: '150px'
-    });
-});
-
-// Losuje któryś z N - 1 elementów
+// Losuje któryś z N-1 elementów
 var losuj = function (n) {
     "use strict";
     return Math.floor(Math.random() * n);
@@ -45,73 +19,38 @@ var generatorBranzy = function (seed) {
         seed = 0;
     }
     if (seed === 0) {
-        var branza1 = losuj(bazaB),
-            branza2 = losuj(bazaB),
-            branza3 = losuj(bazaB),
-            branza11,
-            branza22,
-            branza33;
-        if (branza1 === branza2) {
-            branza2 = losuj(bazaB);
-        }
-        if (branza1 === branza3) {
-            branza3 = losuj(bazaB);
-        }
-        if (branza2 === branza3) {
-            branza3 = losuj(bazaB);
-        }
-        branza11 = branze[branza1];
-        branza22 = branze[branza2];
-        branza33 = branze[branza3];
-        $("#jsBranza1").html(branza11);
-        $("#jsBranza2").html(branza22);
-        $("#jsBranza3").html(branza33);
+        var branzaLos = losuj(BRANZE_N);
+        var branzaWstaw = branze[branzaLos];
+        $("#jsBranza").html(branzaWstaw);
     }
 };
 
-// Nowy generator firm, który będzie miał podsilniki
-var nowyGenerator = function (seed) {
+// Generator firm
+var nowyGenerator = function () {
     "use strict";
-    var nrSilnika = losuj(2);
+    var nrSilnika;
+    if (trybGeneratora == 0) {
+        // Tutaj będzie liczba dostępnych silników
+        nrSilnika = 0;
+    } else {
+        // Albo silnik po prostu brany z radioboksa
+        nrSilnika = trybGeneratora;
+    }
+    // Tutaj następuje właściwy wybór silnika
     switch(nrSilnika) {
         case 0:
-            // SAMO IMIĘ ŻEŃSKIE
-            var nr1 = losuj(imionaZenskieB);
-            firma1 = imionaZenskie[nr1];
-            $("#jsFirma1").html(firma1);
-            break;
-        case 1:
-            // IMIĘ ŻEŃSKIE + KOŃCÓWKA
-            var nr1 = losuj(imionaZenskieB),
-                nr2 = losuj(koncowkaZenskaB);
-            firma1 = imionaZenskie[nr1],
-            firma2 = koncowkaZenska[nr2];
-            $("#jsFirma1").html(firma1),
-            $("#jsFirma2").html(firma2);
+            // Imię z końcówką
+            var nr1 = losuj(IMIONAZEN_N),
+                nr2 = losuj(KONCOWKAZEN_N);
+            var firma1 = imionaZenskie[nr1],
+                firma2 = koncowkaZenska[nr2];
+                $("#jsFirma1").html(firma1);
+                $("#jsFirma2").html(firma2);
             break;
         default:
-            $("#jsFirma1").html("CHUJ");
+            $("#jsFirma1").html("ZEPSUŁO SIĘ");
     }
 }
-
-// Główna funkcja generująca - Firme
-var generatorFirmy = function (seed) {
-    "use strict";
-    if (seed === undefined) {
-        seed = 0;
-    }
-    if (seed === 0) {
-        var numerek1 = losuj(baza1),
-            numerek2 = losuj(baza2),
-            numerek3 = losuj(baza3);
-        firma1 = poczatek[numerek1];
-        firma2 = srodek[numerek2];
-        firma3 = koncowka[numerek3];
-    }
-    $("#jsFirma1").html(firma1);
-    $("#jsFirma2").html(firma2);
-    $("#jsFirma3").html(firma3);
-};
 
 // Odświeżanie ekranu i przejazd przez wszystko
 var glownaPetla = function () {
@@ -125,14 +64,13 @@ var glownaPetla = function () {
     }, 400);
 };
 
-// Kliknij i wygeneruj
-var rozrusznik = function () {
+// To następuję po wduszeniu przycisku
+var rozrusznik = function () { // eslint-disable-line no-unused-vars
     "use strict";
     glownaPetla();
 };
 
-// Uruchom skrypt.
-// Ważne; sprawdź, czy nie przybywa z określonego URLem ziarna
+// Funkcja główna - póki co nic
 $(document).ready(function () {
     "use strict";
     // Tutaj będzie co:
