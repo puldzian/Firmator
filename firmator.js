@@ -1,12 +1,12 @@
-/*global $, document, branze, setTimeout, imionaZenskie, koncowkaZenska, poczatek, srodek, koncowka */
+/*global $, document, branze, setTimeout, poczatek, srodek, koncowka */
 
 var BRANZE_N = branze.length,
-    IMIONAZEN_N = imionaZenskie.length,
-    KONCOWKAZEN_N = koncowkaZenska.length,
+    // IMIONAZEN_N = imionaZenskie.length,
+    // KONCOWKAZEN_N = koncowkaZenska.length,
     POCZATEK_N = poczatek.length,
     SRODEK_N = srodek.length,
-    KONCOWKA_N = koncowka.length,
-    trybGeneratora = 1;
+    KONCOWKA_N = koncowka.length;
+    // trybGeneratora = 1;
 
 // Losuje któryś z N-1 elementów
 var losuj = function (n) {
@@ -30,7 +30,7 @@ var generatorBranzy = function (seed) {
 // Sprawdź czy jest dubel i usuń (ale tylko pierwszy)
 var usunDubel = function (slowo) {
     "use strict";
-    var noweSlowo,
+    var slowoBezDubla,
         a,
         b,
         i; //JSLint to chuj
@@ -43,32 +43,74 @@ var usunDubel = function (slowo) {
         if (a === b) {
             // alert("Slowo[a] to " + slowo[i] + ", a slowo[b] to " + slowo[i - 1]);
             var ab = a + b;
-            noweSlowo = slowo.replace(ab, a);
+            slowoBezDubla = slowo.replace(ab, a);
         }
     }
-    return noweSlowo;
+    return slowoBezDubla;
 };
 
-// Korektor
+// Maszyna czytająca nazwę przedsiębiorstwa
+var czytelnik = function (slowo) {
+    // Słowo na array - DONE
+    // operacja na arrayu,
+    // później powrót do słowa!
+    "use strict";
+    var slowoArray = [],
+        a,
+        b,
+        c,
+        i;
+    for (i = 0; i < slowo.length; i += 1) {
+        slowoArray.push(slowo[i]);
+    }
+    // console.log(slowoArray);
+    for (i = 0; i < slowoArray.length; i += 1) {
+        a = slowoArray[i],
+        b = slowoArray[i + 1],
+        c = slowoArray[i + 2];
+        // console.log(a + " " + b + " " + c);
+        // Testy na 3litery wtedy, kiedy b i c != undefined, bo inaczej nie trzeba
+        // Testy na 2litery, kiedy b != undefined
+        if (a === "o" && b === "u") {
+            // OU
+            console.log("Wykryto OU:" + a + " + " + b);
+            slowoArray.splice(i, 1);
+        }
+        if (a === b && i != 1) {
+            // DUBEL, oprócz pierwszego ZOO
+            console.log("Wykryto dubel:" + a + " + " + b);
+            slowoArray.splice(i, 1);
+        }
+
+    }
+    var slowoNowe = slowoArray.join("");
+    console.log("Słowo po korekcie to: " + slowoNowe);
+};
+
+/* RZECZY DO KOREKTY
+
+oo - dubel
+rwm -
+ntl
+lcl
+aoi
+ou
+Amberplaststudio - stst
+
+*/
+
+
+// Korektor który nic nie robi
 var korektor = function (slowo) {
     "use strict";
-    var noweSlowo = usunDubel(slowo);
+    // var noweSlowo = usunDubel(slowo);
+    czytelnik(slowo);
+    var noweSlowo = slowo;
     return noweSlowo;
 };
 
-/* Imię żeńskie z końcowką
-var silnik1 = function () {
-    "use strict";
-    var nr1 = losuj(IMIONAZEN_N),
-        nr2 = losuj(KONCOWKAZEN_N),
-        firma1 = imionaZenskie[nr1],
-        firma2 = koncowkaZenska[nr2];
-    $("#jsFirma1").html(firma1);
-    $("#jsFirma2").html(firma2);
-}; */
-
-// Klasyczny, duży silnik
-var silnik2 = function () {
+// Generator firm
+var nowyGenerator = function () {
     "use strict";
     var nr1 = losuj(POCZATEK_N),
         nr2 = losuj(SRODEK_N),
@@ -77,35 +119,10 @@ var silnik2 = function () {
         firma2 = srodek[nr2],
         firma3 = koncowka[nr3],
         firma123 = firma1 + firma2 + firma3;
+    console.log("Słowo przed korektą to: " + firma123);
     // UWAGA UWAGA, powinien byc (firma123)
-    var firma456 = korektor(firma123);
-    $("#jsFirma1").html(firma123);
-};
-
-// Generator firm
-var nowyGenerator = function () {
-    "use strict";
-    silnik2();
-    /*
-    var nrSilnika = 1;
-    if (trybGeneratora === 0) {
-        // Tutaj będzie liczba dostępnych silników
-        nrSilnika = 0;
-    } else {
-        // Albo silnik po prostu brany z radioboksa
-        nrSilnika = trybGeneratora;
-    } */
-    // Tutaj następuje właściwy wybór silnika
-    /* switch (nrSilnika) {
-    case 0:
-        silnik1();
-        break;
-    case 1:
-        silnik2();
-        break;
-    default:
-        $("#jsFirma1").html("ZEPSUŁO SIĘ");
-    } */
+    var firma456 = czytelnik(firma123);
+    $("#jsFirma1").html(firma456);
 };
 
 // Odświeżanie ekranu i przejazd przez wszystko
@@ -120,10 +137,12 @@ var glownaPetla = function () {
     }, 400);
 };
 
-// To następuję po wduszeniu przycisku
+// To następuje po wduszeniu przycisku
 var rozrusznik = function () { // eslint-disable-line no-unused-vars
     "use strict";
     glownaPetla();
+
+    // TO DO: ograniczaj szybkie wduszanei przez oczekiwanie na nowe słowo
 };
 
 // Funkcja główna - póki co nic
