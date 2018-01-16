@@ -84,7 +84,8 @@ var czytelnik = function (slowo) {
 
     }
     var slowoNowe = slowoArray.join("");
-    console.log("Słowo po korekcie to: " + slowoNowe);
+    // console.log("Słowo po korekcie to: " + slowoNowe);
+    return slowoNowe;
 };
 
 /* RZECZY DO KOREKTY
