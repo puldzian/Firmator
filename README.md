@@ -2,12 +2,11 @@
 WIP, generator nazw przedsiębiorstw na bazie FIRM
 
 ## TODO
-* STYL: banner firm na drugim ekranie
+* CODE: url i zwracanie
+* CODE: rób opengraph
+* CODE: czekaj na klik
 * STYL: czcionty poprawne
-* DICT: analiza generatora
-* DICT: zrobienie pod-ścieżek
-* DICT: czy litery się powtarzają
+* DICT: analiza kompnentów
 * BONUS: wersja samogrająca
-* BONUS: vibrate
 * BONUS: animacje z VUE?
 * BONUS: wersja adekwatna mobilnie?

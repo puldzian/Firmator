@@ -1,4 +1,4 @@
-/*global $, document, branze, setTimeout, poczatek, srodek, koncowka */
+/*global $, document, branze, setTimeout, poczatek, srodek, koncowka, console */
 
 var BRANZE_N = branze.length,
     // IMIONAZEN_N = imionaZenskie.length,
@@ -27,105 +27,102 @@ var generatorBranzy = function (seed) {
     }
 };
 
-// Sprawdź czy jest dubel i usuń (ale tylko pierwszy)
-var usunDubel = function (slowo) {
+// 1 jeśli samogłoska (nie "i", i jest ok)
+var czySamogloska = function (litera) {
     "use strict";
-    var slowoBezDubla,
-        a,
-        b,
-        i; //JSLint to chuj
-    for (i = 0; i < slowo.length; i += 1) {
-        b = slowo[i];
-        if (i > 0) {
-            a = slowo[i - 1];
-        }
-        // Czy litery są tożsame?
-        if (a === b) {
-            // alert("Slowo[a] to " + slowo[i] + ", a slowo[b] to " + slowo[i - 1]);
-            var ab = a + b;
-            slowoBezDubla = slowo.replace(ab, a);
-        }
+    return ["a", "ą", "e", "ę", "o", "ó", "u", "y"].indexOf(litera) > -1;
+};
+
+// 1 jeśli spółgłoska i nie jebane undefined
+var czySpolgloska = function (litera) {
+    "use strict";
+    if (litera !== undefined) {
+        return ["a", "ą", "e", "ę", "i", "o", "ó", "u", "y"].indexOf(litera.toLowerCase()) < 0;
     }
-    return slowoBezDubla;
 };
 
 // Maszyna czytająca nazwę przedsiębiorstwa
 var czytelnik = function (slowo) {
-    // Słowo na array - DONE
-    // operacja na arrayu,
-    // później powrót do słowa!
     "use strict";
     var slowoArray = [],
         a,
         b,
         c,
-        i;
+        i,
+        niespodzianka,
+        slowoNowe;
+    // Przepychamy słowo w array
     for (i = 0; i < slowo.length; i += 1) {
         slowoArray.push(slowo[i]);
     }
-    // console.log(slowoArray);
+    // Zachodzi właściwa korekta, litera po literze
     for (i = 0; i < slowoArray.length; i += 1) {
-        a = slowoArray[i],
-        b = slowoArray[i + 1],
+        a = slowoArray[i];
+        b = slowoArray[i + 1];
         c = slowoArray[i + 2];
-        // console.log(a + " " + b + " " + c);
-        // Testy na 3litery wtedy, kiedy b i c != undefined, bo inaczej nie trzeba
-        // Testy na 2litery, kiedy b != undefined
-        if (a === "l" &&  b === "c" && c === "l") {
-            // LCL
-            console.log("Wykryto LCL:" + a + " + " + b + " " + c);
-            slowoArray.splice(i + 1, 1);
-        }
-        if (a === "o" && (b === "u" || b === "e" || b === "a" || b === "u")) {
-            // OU
-            console.log("Wykryto OA/OU/OE:" + a + " + " + b);
-            slowoArray.splice(i+1, 1);
-        }
-        if (a === b && i != 1) {
-            // DUBEL, oprócz pierwszego ZOO
-            console.log("Wykryto dubel:" + a + " + " + b);
+        // DUBEL
+        if (a === b && i !== 1) {
+            console.log("Wykryto dubel:" + a + b);
             slowoArray.splice(i, 1);
+        } else if (czySamogloska(a) && czySamogloska(b)) {
+            console.log("Wykryto dwie samogłoski:" + a + b);
+            if (i === 0 || i === 1) {
+                // empty
+            } else if (a === "o") {
+                slowoArray.splice(i + 1, 1);
+            } else if (czySamogloska(c)) {
+                niespodzianka = losuj(2);
+                slowoArray.splice(i + niespodzianka, 1);
+                i -= 1;
+            } else {
+                niespodzianka = losuj(2);
+                slowoArray.splice(i + niespodzianka, 1);
+                i -= 1;
+            }
+        } else if (czySpolgloska(a) && czySpolgloska(b) && czySpolgloska(c)) {
+            console.log("Wykryto trzy spółgłoski: " + a + b + c);
+            if (i === 0 || i === 1 || (a === "n" && b === "d" && c === "l")) {
+                // SZKŁ
+                console.log("Ale niech se będą, bo początek");
+                i += 1;
+            } else if ((a === "k" || a === "s") && b === "t" && c === "r") {
+                //
+                console.log("Ale spoko, bo to elektro albo gastro");
+                i += 1;
+            } else if ((a === "c" && b === "h") || (b === "c" && c === "h")) {
+                //
+                console.log("Ale spoko, bo to >ch<");
+                i += 1;
+            } else if (a === "s" && (b === "t" || b === "r")) {
+                //
+                console.log("Prawie spoko, bo to >st< albo >sr<");
+                slowoArray.splice(i + 2, 1);
+                i += 1;
+            } else if (b === "s" && (c === "t" || c === "r")) {
+                //
+                console.log("Prawie spoko, bo to >st< albo >sr<");
+                slowoArray.splice(i, 1);
+                i += 1;
+            } else if (b === "g" && c === "r") {
+                //
+                console.log("Prawie spoko, bo to >gr<");
+                slowoArray.splice(i, 1);
+                i += 1;
+            } else if (b === "s" && c === "p") {
+                //
+                console.log("Prawie spoko, bo to >sp<");
+                slowoArray.splice(i, 1);
+                i += 1;
+            } else {
+                // USUŃ przypadkową!
+                niespodzianka = losuj(3);
+                slowoArray.splice(i + niespodzianka, 1);
+                i -= 1;
+            }
         }
-
     }
-    var slowoNowe = slowoArray.join("");
-    // console.log("Słowo po korekcie to: " + slowoNowe);
+    slowoNowe = slowoArray.join("");
     return slowoNowe;
-};
-
-/* RZECZY DO KOREKTY
-
-EU > ale w otoczeniu!
-ua
-abf > af
-aeu >
-rwm >
-ntl >
-aoi >
-Amberplaststudio - stst
-Archiecoimo
-Centerczareo
-Sebuaks
-Audioeks
-Fotoieo
-smd
-Jureklasmex
-Drogtiuks
-Adbutweks
-Stolserwdex
-Plasinwpol
-Instlastek
-
-*/
-
-
-// Korektor który nic nie robi
-var korektor = function (slowo) {
-    "use strict";
-    // var noweSlowo = usunDubel(slowo);
-    czytelnik(slowo);
-    var noweSlowo = slowo;
-    return noweSlowo;
 };
 
 // Generator firm
@@ -137,17 +134,17 @@ var nowyGenerator = function () {
         firma1 = poczatek[nr1],
         firma2 = srodek[nr2],
         firma3 = koncowka[nr3],
-        firma123 = firma1 + firma2 + firma3;
+        firma123 = firma1 + firma2 + firma3,
+        firma456;
     console.log("Słowo przed korektą to: " + firma123);
-    // UWAGA UWAGA, powinien byc (firma123)
-    var firma456 = czytelnik(firma123);
+    firma456 = czytelnik(firma123);
     $("#jsFirma1").html(firma456);
 };
 
 // Odświeżanie ekranu i przejazd przez wszystko
 var glownaPetla = function () {
     "use strict";
-    // navigator.vibrate(200); to nie jest potrzebne :)
+    // TO DO: rozbij znikanie na 2 etapy
     $(".znikajace").fadeOut();
     setTimeout(function () {
         nowyGenerator();
@@ -160,8 +157,8 @@ var glownaPetla = function () {
 var rozrusznik = function () { // eslint-disable-line no-unused-vars
     "use strict";
     glownaPetla();
-
-    // TO DO: ograniczaj szybkie wduszanei przez oczekiwanie na nowe słowo
+    // TO DO: ograniczaj szybkie wduszanei
+    // przez oczekiwanie na nowe słowo
 };
 
 // Funkcja główna - póki co nic
