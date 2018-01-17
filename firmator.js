@@ -71,10 +71,15 @@ var czytelnik = function (slowo) {
         // console.log(a + " " + b + " " + c);
         // Testy na 3litery wtedy, kiedy b i c != undefined, bo inaczej nie trzeba
         // Testy na 2litery, kiedy b != undefined
-        if (a === "o" && b === "u") {
+        if (a === "l" &&  b === "c" && c === "l") {
+            // LCL
+            console.log("Wykryto LCL:" + a + " + " + b + " " + c);
+            slowoArray.splice(i + 1, 1);
+        }
+        if (a === "o" && (b === "u" || b === "e" || b === "a" || b === "u")) {
             // OU
-            console.log("Wykryto OU:" + a + " + " + b);
-            slowoArray.splice(i, 1);
+            console.log("Wykryto OA/OU/OE:" + a + " + " + b);
+            slowoArray.splice(i+1, 1);
         }
         if (a === b && i != 1) {
             // DUBEL, oprócz pierwszego ZOO
@@ -90,13 +95,26 @@ var czytelnik = function (slowo) {
 
 /* RZECZY DO KOREKTY
 
-oo - dubel
-rwm -
-ntl
-lcl
-aoi
-ou
+EU > ale w otoczeniu!
+ua
+abf > af
+aeu >
+rwm >
+ntl >
+aoi >
 Amberplaststudio - stst
+Archiecoimo
+Centerczareo
+Sebuaks
+Audioeks
+Fotoieo
+smd
+Jureklasmex
+Drogtiuks
+Adbutweks
+Stolserwdex
+Plasinwpol
+Instlastek
 
 */
 
