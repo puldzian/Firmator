@@ -1,11 +1,14 @@
-/*global $, document, branze, setTimeout, poczatek, srodek, koncowka, console */
+/*global $, document, branze, setTimeout, poczatek, srodek, koncowka */
 
 var BRANZE_N = branze.length,
-    // IMIONAZEN_N = imionaZenskie.length,
-    // KONCOWKAZEN_N = koncowkaZenska.length,
     POCZATEK_N = poczatek.length,
     SRODEK_N = srodek.length,
-    KONCOWKA_N = koncowka.length;
+    KONCOWKA_N = koncowka.length,
+    trwaAnimacja = 0,
+    urlA,
+    urlB,
+    urlC,
+    urlD;
     // trybGeneratora = 1;
 
 // Losuje któryś z N-1 elementów
@@ -62,10 +65,10 @@ var czytelnik = function (slowo) {
         c = slowoArray[i + 2];
         // DUBEL
         if (a === b && i !== 1) {
-            console.log("Wykryto dubel:" + a + b);
+            // console.log("Wykryto dubel:" + a + b);
             slowoArray.splice(i, 1);
         } else if (czySamogloska(a) && czySamogloska(b)) {
-            console.log("Wykryto dwie samogłoski:" + a + b);
+            // console.log("Wykryto dwie samogłoski:" + a + b);
             if (i === 0 || i === 1) {
                 // empty
             } else if (a === "o") {
@@ -80,43 +83,38 @@ var czytelnik = function (slowo) {
                 i -= 1;
             }
         } else if (czySpolgloska(a) && czySpolgloska(b) && czySpolgloska(c)) {
-            console.log("Wykryto trzy spółgłoski: " + a + b + c);
+            // console.log("Wykryto trzy spółgłoski: " + a + b + c);
             if (i === 0 || i === 1 || (a === "n" && b === "d" && c === "l")) {
                 // SZKŁ
-                console.log("Ale niech se będą, bo początek");
+                // console.log("Ale niech se będą, bo początek");
                 i += 1;
             } else if ((a === "k" || a === "s") && b === "t" && c === "r") {
-                //
-                console.log("Ale spoko, bo to elektro albo gastro");
+                // console.log("Ale spoko, bo to elektro albo gastro");
                 i += 1;
             } else if ((a === "c" && b === "h") || (b === "c" && c === "h")) {
-                //
-                console.log("Ale spoko, bo to >ch<");
+                // console.log("Ale spoko, bo to >ch<");
                 i += 1;
             } else if (a === "s" && (b === "t" || b === "r")) {
-                //
-                console.log("Prawie spoko, bo to >st< albo >sr<");
+                // console.log("Prawie spoko, bo to >st< albo >sr<");
                 slowoArray.splice(i + 2, 1);
                 i += 1;
             } else if (b === "s" && (c === "t" || c === "r")) {
-                //
-                console.log("Prawie spoko, bo to >st< albo >sr<");
+                // console.log("Prawie spoko, bo to >st< albo >sr<");
                 slowoArray.splice(i, 1);
                 i += 1;
             } else if (b === "g" && c === "r") {
-                //
-                console.log("Prawie spoko, bo to >gr<");
+                // console.log("Prawie spoko, bo to >gr<");
                 slowoArray.splice(i, 1);
                 i += 1;
             } else if (b === "s" && c === "p") {
-                //
-                console.log("Prawie spoko, bo to >sp<");
+                // console.log("Prawie spoko, bo to >sp<");
                 slowoArray.splice(i, 1);
                 i += 1;
             } else {
                 // USUŃ przypadkową!
-                niespodzianka = losuj(3);
-                slowoArray.splice(i + niespodzianka, 1);
+                // niespodzianka = losuj(3);
+                // nie, jednak ostatnią bo wychodzą gówna
+                slowoArray.splice(i + 2, 1);
                 i -= 1;
             }
         }
@@ -136,7 +134,7 @@ var nowyGenerator = function () {
         firma3 = koncowka[nr3],
         firma123 = firma1 + firma2 + firma3,
         firma456;
-    console.log("Słowo przed korektą to: " + firma123);
+    // console.log("Słowo przed korektą to: " + firma123);
     firma456 = czytelnik(firma123);
     $("#jsFirma1").html(firma456);
 };
@@ -147,18 +145,28 @@ var glownaPetla = function () {
     // TO DO: rozbij znikanie na 2 etapy
     $(".znikajace").fadeOut();
     setTimeout(function () {
+        $(".znikajace2").fadeOut();
+    }, 75);
+    setTimeout(function () {
         nowyGenerator();
         generatorBranzy();
         $(".znikajace").fadeIn();
+        $(".znikajace2").fadeIn();
     }, 400);
 };
 
 // To następuje po wduszeniu przycisku
 var rozrusznik = function () { // eslint-disable-line no-unused-vars
     "use strict";
-    glownaPetla();
-    // TO DO: ograniczaj szybkie wduszanei
-    // przez oczekiwanie na nowe słowo
+    if (trwaAnimacja) {
+        // empty
+    } else {
+        trwaAnimacja = 1;
+        glownaPetla();
+        setTimeout(function () {
+            trwaAnimacja = 0;
+        }, 500);
+    }
 };
 
 // Funkcja główna - póki co nic

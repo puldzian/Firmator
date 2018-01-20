@@ -7,5 +7,5 @@ var poczatek = [ // eslint-disable-line no-unused-vars
         "a", "ab", "al", "bor", "bos", "but", "chem", "col", "czar", "dup", "e", "eco", "eko", "es", "euro", "gips", "gum", "i", "int", "inw", "farm", "fil", "filc", "ko", "kom", "kosm", "la", "las", "li", "mar", "me", "med", "mot", "my", "o", "per", "plast", "pol", "serw", "tech", "ti", "to", "ty", "u", "wit", "y"
     ],
     koncowka = [ // eslint-disable-line no-unused-vars
-        "ak", "aks", "am", "an", "art", "ax", "bud", "but", "bur", "ch", "dex", "deks", "dent", "eks", "ek", "em", "en", "er", "ex", "farm", "gips", "graf", "gum", "imo", "in", "jan", "kom", "lex", "log", "mag", "mark", "mech", "mer", "met", "mex", "mir", "miks", "mix", "model", "mont", "o", "onik", "pasz", "pol", "rom", "rol", "rok", "rz", "sport", "studio", "sz", "te", "tek", "tex", "tech", "ten", "trans", "ux", "uks", "weks", "zer"
+        "ak", "aks", "am", "an", "art", "arz", "ax", "bud", "but", "bur", "ch", "dex", "deks", "dent", "eks", "ek", "em", "en", "er", "erz", "ex", "farm", "gips", "graf", "gum", "imo", "in", "jan", "kom", "lex", "log", "mag", "mark", "mech", "mer", "met", "mex", "mir", "miks", "mix", "model", "mont", "o", "onik", "pasz", "pol", "rom", "rol", "rok", "sport", "studio", "sz", "te", "tek", "tex", "tech", "ten", "trans", "ux", "uks", "weks", "zer"
     ];
