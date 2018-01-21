@@ -1,47 +1,23 @@
-/*global $, document, branze, setTimeout, poczatek, srodek, koncowka */
+/*global $, document, setTimeout, dictBranze, dictPrefix, dictInfix, dictSufix */
 
-var BRANZE_N = branze.length,
-    POCZATEK_N = poczatek.length,
-    SRODEK_N = srodek.length,
-    KONCOWKA_N = koncowka.length,
-    trwaAnimacja = 0,
-    urlA,
-    urlB,
-    urlC,
-    urlD;
-    // trybGeneratora = 1;
+var BRANZA_N = dictBranze.length,
+    branzaNum,
+    branzaStr,
+    PREFIX_N = dictPrefix.length,
+    prefixNum,
+    prefixStr,
+    INFIX_N = dictInfix.length,
+    infixNum,
+    infixStr,
+    SUFIX_N = dictSufix.length,
+    sufixNum,
+    sufixStr,
+    firmaStr;
 
 // Losuje któryś z N-1 elementów
 var losuj = function (n) {
     "use strict";
     return Math.floor(Math.random() * n);
-};
-
-// Osobny generator branż
-var generatorBranzy = function (seed) {
-    "use strict";
-    if (seed === undefined) {
-        seed = 0;
-    }
-    if (seed === 0) {
-        var branzaLos = losuj(BRANZE_N),
-            branzaWstaw = branze[branzaLos];
-        $("#jsBranza").html(branzaWstaw);
-    }
-};
-
-// 1 jeśli samogłoska (nie "i", i jest ok)
-var czySamogloska = function (litera) {
-    "use strict";
-    return ["a", "ą", "e", "ę", "o", "ó", "u", "y"].indexOf(litera) > -1;
-};
-
-// 1 jeśli spółgłoska i nie jebane undefined
-var czySpolgloska = function (litera) {
-    "use strict";
-    if (litera !== undefined) {
-        return ["a", "ą", "e", "ę", "i", "o", "ó", "u", "y"].indexOf(litera.toLowerCase()) < 0;
-    }
 };
 
 // Maszyna czytająca nazwę przedsiębiorstwa
@@ -52,8 +28,17 @@ var czytelnik = function (slowo) {
         b,
         c,
         i,
-        niespodzianka,
-        slowoNowe;
+        slowoNowe,
+    // 1 jeśli samogłoska (nie "i", i jest ok)
+        czySamogloska = function (litera) {
+            return ["a", "ą", "e", "ę", "o", "ó", "u", "y"].indexOf(litera) > -1;
+        },
+    // 1 jeśli spółgłoska i nie jebane undefined
+        czySpolgloska = function (litera) {
+            if (litera !== undefined) {
+                return ["a", "ą", "e", "ę", "i", "o", "ó", "u", "y"].indexOf(litera.toLowerCase()) < 0;
+            }
+        };
     // Przepychamy słowo w array
     for (i = 0; i < slowo.length; i += 1) {
         slowoArray.push(slowo[i]);
@@ -71,15 +56,14 @@ var czytelnik = function (slowo) {
             // console.log("Wykryto dwie samogłoski:" + a + b);
             if (i === 0 || i === 1) {
                 // empty
+                // odpieprz się
             } else if (a === "o") {
                 slowoArray.splice(i + 1, 1);
             } else if (czySamogloska(c)) {
-                niespodzianka = losuj(2);
-                slowoArray.splice(i + niespodzianka, 1);
+                slowoArray.splice(i + 2, 1);
                 i -= 1;
             } else {
-                niespodzianka = losuj(2);
-                slowoArray.splice(i + niespodzianka, 1);
+                slowoArray.splice(i + 1, 1);
                 i -= 1;
             }
         } else if (czySpolgloska(a) && czySpolgloska(b) && czySpolgloska(c)) {
@@ -123,55 +107,165 @@ var czytelnik = function (slowo) {
     return slowoNowe;
 };
 
-// Generator firm
-var nowyGenerator = function () {
+// Odśwież branże. Jeśli "0" - bez fade
+var odswiezBranze = function (arg) {
     "use strict";
-    var nr1 = losuj(POCZATEK_N),
-        nr2 = losuj(SRODEK_N),
-        nr3 = losuj(KONCOWKA_N),
-        firma1 = poczatek[nr1],
-        firma2 = srodek[nr2],
-        firma3 = koncowka[nr3],
-        firma123 = firma1 + firma2 + firma3,
-        firma456;
-    // console.log("Słowo przed korektą to: " + firma123);
-    firma456 = czytelnik(firma123);
-    $("#jsFirma1").html(firma456);
-};
-
-// Odświeżanie ekranu i przejazd przez wszystko
-var glownaPetla = function () {
-    "use strict";
-    // TO DO: rozbij znikanie na 2 etapy
-    $(".znikajace").fadeOut();
-    setTimeout(function () {
-        $(".znikajace2").fadeOut();
-    }, 75);
-    setTimeout(function () {
-        nowyGenerator();
-        generatorBranzy();
-        $(".znikajace").fadeIn();
-        $(".znikajace2").fadeIn();
-    }, 400);
-};
-
-// To następuje po wduszeniu przycisku
-var rozrusznik = function () { // eslint-disable-line no-unused-vars
-    "use strict";
-    if (trwaAnimacja) {
-        // empty
+    if (arg === 0) {
+        $("#jsBranza").html(branzaStr);
     } else {
-        trwaAnimacja = 1;
-        glownaPetla();
+        $(".znikajace2").fadeOut(200);
         setTimeout(function () {
-            trwaAnimacja = 0;
-        }, 500);
+            $("#jsBranza").html(branzaStr);
+        }, 200);
+        setTimeout(function () {
+            $(".znikajace2").fadeIn(200);
+        }, 200);
     }
+};
+
+// Odśwież firme. Jeśli "0" - bez fade
+var odswiezFirme = function (arg) {
+    "use strict";
+    if (arg === 0) {
+        firmaStr = prefixStr + infixStr + sufixStr;
+        firmaStr = czytelnik(firmaStr);
+        $("#jsFirma1").html(firmaStr);
+    } else {
+        $(".znikajace1").fadeOut(200);
+        setTimeout(function () {
+            firmaStr = prefixStr + infixStr + sufixStr;
+            firmaStr = czytelnik(firmaStr);
+            $("#jsFirma1").html(firmaStr);
+        }, 200);
+        setTimeout(function () {
+            $(".znikajace1").fadeIn(200);
+        }, 200);
+    }
+};
+
+// Podmień wartość danego elementu:
+// Arg: 0 - los, 1 - w lewo, 2 - w prawo
+// Element: prefix, infix, sufix, branza
+var zmienWartosc = function (arg, element, delay) {
+    "use strict";
+    var baza,
+        limit,
+        numer,
+        slowo;
+    // Tutaj pobieramy dane o elemencie
+    switch (element) {
+    case "branza":
+        baza = dictBranze;
+        limit = BRANZA_N;
+        numer = branzaNum;
+        slowo = branzaStr;
+        break;
+    case "prefix":
+        baza = dictPrefix;
+        limit = PREFIX_N;
+        numer = prefixNum;
+        slowo = prefixStr;
+        break;
+    case "infix":
+        baza = dictInfix;
+        limit = INFIX_N;
+        numer = infixNum;
+        slowo = infixStr;
+        break;
+    case "sufix":
+        baza = dictSufix;
+        limit = SUFIX_N;
+        numer = sufixNum;
+        slowo = sufixStr;
+        break;
+    }
+    // Tutaj modyfikujemy to, co trzeba
+    switch (arg) {
+    case 0:
+        numer = losuj(limit);
+        break;
+    case 1:
+        numer = numer - 1;
+        if (numer === -1) {
+            numer = limit - 1;
+        }
+        break;
+    case 2:
+        numer = numer + 1;
+        if (numer >= limit) {
+            numer = 0;
+        }
+        break;
+    }
+    slowo = baza[numer];
+    // Trzeba jeszcze zwrocić do aplikacji
+    switch (element) {
+    case "branza":
+        branzaNum = numer;
+        branzaStr = dictBranze[branzaNum];
+        odswiezBranze(delay);
+        break;
+    case "prefix":
+        prefixNum = numer;
+        prefixStr = slowo;
+        odswiezFirme(delay);
+        break;
+    case "infix":
+        infixNum = numer;
+        infixStr = slowo;
+        odswiezFirme(delay);
+        break;
+    case "sufix":
+        sufixNum = numer;
+        sufixStr = slowo;
+        odswiezFirme(delay);
+        break;
+    }
+};
+
+// Podmień firmę i branże
+var zmienWszystko = function (delay) {
+    "use strict";
+    zmienWartosc(0, "prefix", delay);
+    zmienWartosc(0, "infix", delay);
+    zmienWartosc(0, "sufix", delay);
+    zmienWartosc(0, "branza", delay);
+};
+
+// Naciśnięcie przycisku udostępnij!
+var buttonShare = function () { // eslint-disable-line no-unused-vars
+    "use strict";
+    // Tutaj będzie kod udostępnianai
+};
+
+// Naciśnięcie przycisku losuj!
+var buttonLosuj = function () { // eslint-disable-line no-unused-vars
+    "use strict";
+    zmienWszystko();
+};
+
+// Naciśnięcie przycisku start!
+var buttonStart = function () { // eslint-disable-line no-unused-vars
+    "use strict";
+    // Znika to, co było
+    $(".znikajace1").fadeOut();
+    $(".znikajace2").fadeOut();
+    $(".znikajace3").fadeOut();
+    // Losujemy wartości firm i branży
+    // Z opóźnieniem, żeby było ładniej
+    setTimeout(function () {
+        zmienWszystko(0);
+    }, 400);
+    // Pojawiamy spowrotem
+    setTimeout(function () {
+        $(".znikajace1").fadeIn(500);
+        $(".znikajace2").fadeIn(1000);
+        $(".pojawiajace").fadeIn(1200);
+    }, 500);
 };
 
 // Funkcja główna - póki co nic
 $(document).ready(function () {
     "use strict";
-    // Tutaj będzie co:
-    // może uzgadnianie seeda przy ładowaniu strony
+    // empty
 });

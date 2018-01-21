@@ -1,4 +1,4 @@
-var branze = [ // eslint-disable-line no-unused-vars
+var dictBranze = [ // eslint-disable-line no-unused-vars
 // Uprawy rolne, chów i hodowla zwierząt, łowiectwo, włączając działalność usługową
         "Uprawy rolne inne niż\xA0wieloletnie",
         "Uprawa roślin wieloletnich",

@@ -10,7 +10,7 @@
     <meta property="og:type" content="website" />
     <meta property="og:url" content="http://rozdzielchleb.pl/kod/zalozfirmy/" />
     <meta property="og:image" content="oglogotyp.png" />
-    <link href="https://fonts.googleapis.com/css?family=Cantarell" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="firmator.css" />
     <script src="libs/jquery-2.1.4.min.js"></script>
     <script src="branze.js"></script>
@@ -24,9 +24,19 @@
     <!-- Górna połowa -->
     <div class="strona gora">
         <center><div class="zawartosc">
-            <div class="nazwa znikajace"><span id="jsFirma1"></span><span id="jsFirma2"></span><span id="jsFirma3"></span></div>
+            <div class="nazwa znikajace1"><span id="jsFirma1">ZAŁÓŻ FIRMY</span><span id="jsFirma2"></span><span id="jsFirma3"></span></div>
             <div class="branza znikajace2"><span id="jsBranza">Odnieś sukces, rozpocznij indywidualną działalność gospodarczą. Zadbaj o wyjątkową nazwę swojego przedsiębiorstwa. <br/>Na pewno świetnie Ci pójdzie.</span></div>
-            <button class="przycisk click-trigger znikajace" data-click-id="click-001" id="jsButtonFirma" onclick="rozrusznik()">Załóż firmę</button>
+            <div class="panel">
+                <button class="przycisk znikajace3" id="jsButtonFirma" onclick="buttonStart()">TAK</button>
+                <div class="sterowanie pojawiajace">
+                    <a href="#" class="linka" onclick="zmienWartosc(1, 'prefix')"><</a> <a href="#" class="linka" onclick="zmienWartosc(0, 'prefix')">PREFIKS</a> <a href="#" class="linka" onclick="zmienWartosc(2, 'prefix')">></a>&nbsp;&nbsp;&nbsp;
+                    <a href="#" class="linka" onclick="zmienWartosc(1, 'infix')"><</a> <a href="#" class="linka" onclick="zmienWartosc(0, 'infix')">INFIKS</a> <a href="#" class="linka" onclick="zmienWartosc(2, 'infix')">></a>&nbsp;&nbsp;&nbsp;
+                    <a href="#" class="linka" onclick="zmienWartosc(1, 'sufix')"><</a> <a href="#" class="linka" onclick="zmienWartosc(0, 'sufix')">SUFIKS</a> <a href="#" class="linka" onclick="zmienWartosc(2, 'sufix')">></a>&nbsp;&nbsp;&nbsp;
+                    <a href="#" class="linka" onclick="zmienWartosc(1, 'branza')"><</a> <a href="#" class="linka" onclick="zmienWartosc(0, 'branza')">BRANŻA</a> <a href="#" class="linka" onclick="zmienWartosc(2, 'branza')">></a><br/>
+                    <a href="#" class="losuj" onclick="buttonLosuj()">LOSUJ</a>&nbsp;&nbsp;&nbsp;
+                    <a href="#" class="udostepnij">UDOSTĘPNIJ</a>
+                </div>
+            </div>
         </div></center>
     </div>
 

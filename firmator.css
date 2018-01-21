@@ -5,7 +5,7 @@ html, body, div, span, applet, object, iframe, h1, h2, h3, h4, h5, h6, p, blockq
 
 body {
     background-color: white;
-    font-family: "Cantarell", sans-serif;
+    font-family: "Open Sans", sans-serif;
     height:100%;
     text-align: center;
 }
@@ -26,22 +26,10 @@ body {
 }
 .zawartosc {
     display:block;
-    /* border:1px solid black; */
     max-width: 750px;
     overflow:hidden;
     position: relative;
 }
-
-.devconsole {
-    display: block;
-    font-size: 10px;
-    left:0;
-    position: absolute;
-    text-align: left;
-    top:0;
-    width:150px;
-}
-
 
 /* GÓRNA CZĘŚĆ */
 .nazwa {
@@ -52,7 +40,8 @@ body {
 }
 .branza {
     font-size:2em;
-    height:170px;
+    line-height: 1.05em;
+    height:150px;
 }
 .przycisk {
     background: black;
@@ -66,6 +55,14 @@ body {
     padding:10px 15px;
     text-transform: uppercase;
 }
+.sterowanie {
+    font-size:18px;
+    height:80px;
+}
+.pojawiajace {
+    display:none;
+}
+
 /* DÓŁ */
 .banner {
     box-sizing: border-box;
