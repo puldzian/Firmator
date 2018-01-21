@@ -57,19 +57,25 @@ body {
 }
 .sterowanie {
     font-size:18px;
-    height:50px;
+    height:60px;
+    line-height:30px;
 }
 .sterowanie a {
-    border: none;
-    color: darkgray;
-    padding 5px;
+    margin:0 auto;
+    padding:3px 5px;
 }
 .sterowanie a:link, .sterowanie a:visited, .sterowanie a:hover, .sterowanie a:active {
+    border: none;
     color: black;
 }
 
 .pojawiajace {
     display:none;
+}
+
+a.sharing {
+    color:white !important;
+    background: #3b5998;
 }
 
 /* DÓŁ */
