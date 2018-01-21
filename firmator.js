@@ -107,39 +107,39 @@ var czytelnik = function (slowo) {
     return slowoNowe;
 };
 
-// Odśwież branże. Jeśli "0" - bez fade
+// Odśwież branże. arg to czas fade
 var odswiezBranze = function (arg) {
     "use strict";
+    $("meta[name='og:description']").attr('content', "Działam w branży: " + branzaStr);
     if (arg === 0) {
         $("#jsBranza").html(branzaStr);
     } else {
-        $(".znikajace2").fadeOut(200);
+        $(".znikajace2").fadeOut(arg);
         setTimeout(function () {
             $("#jsBranza").html(branzaStr);
-        }, 200);
+        }, arg);
         setTimeout(function () {
-            $(".znikajace2").fadeIn(200);
-        }, 200);
+            $(".znikajace2").fadeIn(arg);
+        }, arg);
     }
 };
 
 // Odśwież firme. Jeśli "0" - bez fade
 var odswiezFirme = function (arg) {
     "use strict";
+    firmaStr = prefixStr + infixStr + sufixStr;
+    firmaStr = czytelnik(firmaStr);
+    $("meta[name='og:title']").attr('content', "Moja firma to: " + firmaStr);
     if (arg === 0) {
-        firmaStr = prefixStr + infixStr + sufixStr;
-        firmaStr = czytelnik(firmaStr);
         $("#jsFirma1").html(firmaStr);
     } else {
-        $(".znikajace1").fadeOut(200);
+        $(".znikajace1").fadeOut(arg);
         setTimeout(function () {
-            firmaStr = prefixStr + infixStr + sufixStr;
-            firmaStr = czytelnik(firmaStr);
             $("#jsFirma1").html(firmaStr);
-        }, 200);
+        }, arg);
         setTimeout(function () {
-            $(".znikajace1").fadeIn(200);
-        }, 200);
+            $(".znikajace1").fadeIn(arg);
+        }, arg);
     }
 };
 
@@ -224,12 +224,16 @@ var zmienWartosc = function (arg, element, delay) {
 };
 
 // Podmień firmę i branże
+
+// TO MUSI BYĆ ZMIENIONE NA CZYSTE FLAKI BO KURWA jest za duże fadeinów na linii
 var zmienWszystko = function (delay) {
     "use strict";
-    zmienWartosc(0, "prefix", delay);
-    zmienWartosc(0, "infix", delay);
-    zmienWartosc(0, "sufix", delay);
-    zmienWartosc(0, "branza", delay);
+    branzaStr = dictBranze[losuj(BRANZA_N)];
+    prefixStr = dictPrefix[losuj(PREFIX_N)];
+    infixStr = dictInfix[losuj(INFIX_N)];
+    sufixStr = dictSufix[losuj(SUFIX_N)];
+    odswiezFirme(delay);
+    odswiezBranze(delay);
 };
 
 // Naciśnięcie przycisku udostępnij!
@@ -241,7 +245,7 @@ var buttonShare = function () { // eslint-disable-line no-unused-vars
 // Naciśnięcie przycisku losuj!
 var buttonLosuj = function () { // eslint-disable-line no-unused-vars
     "use strict";
-    zmienWszystko();
+    zmienWszystko(200);
 };
 
 // Naciśnięcie przycisku start!
@@ -263,6 +267,31 @@ var buttonStart = function () { // eslint-disable-line no-unused-vars
         $(".pojawiajace").fadeIn(1200);
     }, 500);
 };
+
+function shareOverrideOGMeta(overrideTitle, overrideDescription, obrazek)
+{
+	FB.ui({
+		method: 'share_open_graph',
+		action_type: 'og.shares',
+		action_properties: JSON.stringify({
+			object: {
+				'og:title': overrideTitle,
+				'og:description': overrideDescription,
+                'og:image': obrazek
+			}
+		})
+	},
+	function () {
+	// Action after response
+	});
+}
+
+var udostepnij = function () { // eslint-disable-line no-unused-vars
+    var tytul = "Moja firma to: " + firmaStr.toUpperCase();
+    var opis = "Działam w branży: " + branzaStr;
+    var image = "https://rozdzielchleb.pl/kody/zalozfirmy/oglogotyp.png"
+    shareOverrideOGMeta(tytul, opis, image);
+}
 
 // Funkcja główna - póki co nic
 $(document).ready(function () {

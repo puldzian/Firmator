@@ -8,7 +8,7 @@
     <meta property="og:description" content="Generator nazw przedsiębiorstw." />
     <meta property="og:site_name" content="Rozdzielczość Chleba" />
     <meta property="og:type" content="website" />
-    <meta property="og:url" content="http://rozdzielchleb.pl/kod/zalozfirmy/" />
+    <meta property="og:url" content="http://rozdzielchleb.pl/kody/zalozfirmy" />
     <meta property="og:image" content="oglogotyp.png" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="firmator.css" />
@@ -17,6 +17,28 @@
     <script src="firmy.js"></script>
     <script src="firmator.js"></script>
     <title>ZAŁÓŻ FIRMY | Puldzian</title>
+
+<script>
+  window.fbAsyncInit = function() {
+	FB.init({
+	  appId            : '139993286696170',
+	  autoLogAppEvents : true,
+	  xfbml            : true,
+	  version          : 'v2.10'
+	});
+	FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+	 var js, fjs = d.getElementsByTagName(s)[0];
+	 if (d.getElementById(id)) {return;}
+	 js = d.createElement(s); js.id = id;
+	 js.src = "https://connect.facebook.net/en_US/sdk.js";
+	 fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
 </head>
 
 <body>
@@ -27,14 +49,14 @@
             <div class="nazwa znikajace1"><span id="jsFirma1">ZAŁÓŻ FIRMY</span><span id="jsFirma2"></span><span id="jsFirma3"></span></div>
             <div class="branza znikajace2"><span id="jsBranza">Odnieś sukces, rozpocznij indywidualną działalność gospodarczą. Zadbaj o wyjątkową nazwę swojego przedsiębiorstwa. <br/>Na pewno świetnie Ci pójdzie.</span></div>
             <div class="panel">
-                <button class="przycisk znikajace3" id="jsButtonFirma" onclick="buttonStart()">TAK</button>
+                <button class="przycisk znikajace3" id="jsButtonFirma" onclick="buttonStart()">TAK, CHCĘ</button>
                 <div class="sterowanie pojawiajace">
-                    <a href="#" class="linka" onclick="zmienWartosc(1, 'prefix')"><</a> <a href="#" class="linka" onclick="zmienWartosc(0, 'prefix')">PREFIKS</a> <a href="#" class="linka" onclick="zmienWartosc(2, 'prefix')">></a>&nbsp;&nbsp;&nbsp;
-                    <a href="#" class="linka" onclick="zmienWartosc(1, 'infix')"><</a> <a href="#" class="linka" onclick="zmienWartosc(0, 'infix')">INFIKS</a> <a href="#" class="linka" onclick="zmienWartosc(2, 'infix')">></a>&nbsp;&nbsp;&nbsp;
-                    <a href="#" class="linka" onclick="zmienWartosc(1, 'sufix')"><</a> <a href="#" class="linka" onclick="zmienWartosc(0, 'sufix')">SUFIKS</a> <a href="#" class="linka" onclick="zmienWartosc(2, 'sufix')">></a>&nbsp;&nbsp;&nbsp;
-                    <a href="#" class="linka" onclick="zmienWartosc(1, 'branza')"><</a> <a href="#" class="linka" onclick="zmienWartosc(0, 'branza')">BRANŻA</a> <a href="#" class="linka" onclick="zmienWartosc(2, 'branza')">></a><br/>
-                    <a href="#" class="losuj" onclick="buttonLosuj()">LOSUJ</a>&nbsp;&nbsp;&nbsp;
-                    <a href="#" class="udostepnij">UDOSTĘPNIJ</a>
+                    <a href="#" class="linka" onclick="zmienWartosc(0, 'prefix', 200)">PREFIKS</a>&nbsp;&nbsp;&nbsp;
+                    <a href="#" class="linka" onclick="zmienWartosc(0, 'infix', 200)">INFIKS</a>&nbsp;&nbsp;&nbsp;
+                    <a href="#" class="linka" onclick="zmienWartosc(0, 'sufix', 200)">SUFIKS</a>&nbsp;&nbsp;&nbsp;
+                    <a href="#" class="linka" onclick="zmienWartosc(0, 'branza', 200)">BRANŻA</a><br/>
+                    <a href="#" class="losuj" onclick="zmienWszystko(200)">LOSUJ</a>&nbsp;&nbsp;&nbsp;
+                    <a href="#" data-href="https://rozdzielchleb.pl/kody/zalozfirmy/" onclick="udostepnij()">UDOSTĘPNIJ</a>
                 </div>
             </div>
         </div></center>
