@@ -114,13 +114,13 @@ var odswiezBranze = function (arg) {
     if (arg === 0) {
         $("#jsBranza").html(branzaStr);
     } else {
-        $(".znikajace2").fadeOut(arg);
+        $(".znikajace2").fadeTo(200, 0);
         setTimeout(function () {
             $("#jsBranza").html(branzaStr);
-        }, arg);
+        }, 200);
         setTimeout(function () {
-            $(".znikajace2").fadeIn(arg);
-        }, arg);
+            $(".znikajace2").fadeTo(200, 1);
+        }, 200);
     }
 };
 
@@ -133,12 +133,12 @@ var odswiezFirme = function (arg) {
     if (arg === 0) {
         $("#jsFirma1").html(firmaStr);
     } else {
-        $(".znikajace1").fadeOut(arg);
+        $(".znikajace1").fadeTo(arg, 0);
         setTimeout(function () {
             $("#jsFirma1").html(firmaStr);
         }, arg);
         setTimeout(function () {
-            $(".znikajace1").fadeIn(arg);
+            $(".znikajace1").fadeTo(arg, 1);
         }, arg);
     }
 };
@@ -252,9 +252,9 @@ var buttonLosuj = function () { // eslint-disable-line no-unused-vars
 var buttonStart = function () { // eslint-disable-line no-unused-vars
     "use strict";
     // Znika to, co było
-    $(".znikajace1").fadeOut();
-    $(".znikajace2").fadeOut();
-    $(".znikajace3").fadeOut();
+    $(".znikajace1").fadeOut(400);
+    $(".znikajace2").fadeOut(400);
+    $(".znikajace3").fadeOut(400);
     // Losujemy wartości firm i branży
     // Z opóźnieniem, żeby było ładniej
     setTimeout(function () {
@@ -296,5 +296,8 @@ var udostepnij = function () { // eslint-disable-line no-unused-vars
 // Funkcja główna - póki co nic
 $(document).ready(function () {
     "use strict";
-    // empty
+    var szerokosc = $(document).width();
+    if (szerokosc < 600) {
+        $(".telefon").css("display", "block");
+    }
 });

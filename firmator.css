@@ -107,3 +107,19 @@ a.sharing {
 .under {
     text-decoration: underline;
 }
+
+/* ZAŚLEPKA NA TELEFON */
+.telefon {
+    background: yellow;
+    color: black;
+    display:none;
+    height:100%;
+    left:0;
+    position:absolute;
+    top:0;
+    width:100%;
+}
+.telefon p {
+    font-size: 48px;
+    padding:250px 0 0;
+}

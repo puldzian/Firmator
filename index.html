@@ -12,7 +12,7 @@
     <meta property="og:image" content="oglogotyp.png" />
     <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
     <link type="text/css" rel="stylesheet" href="firmator.css" />
-    <script src="libs/jquery-2.1.4.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
     <script src="branze.js"></script>
     <script src="firmy.js"></script>
     <script src="firmator.js"></script>
@@ -51,11 +51,11 @@
             <div class="panel">
                 <button class="przycisk znikajace3" id="jsButtonFirma" onclick="buttonStart()">TAK, CHCĘ</button>
                 <div class="sterowanie pojawiajace">
-                    <a href="#" class="linka" onclick="zmienWartosc(0, 'prefix', 200)">PREFIKS</a>&nbsp;&nbsp;&nbsp;
-                    <a href="#" class="linka" onclick="zmienWartosc(0, 'infix', 200)">INFIKS</a>&nbsp;&nbsp;&nbsp;
-                    <a href="#" class="linka" onclick="zmienWartosc(0, 'sufix', 200)">SUFIKS</a>&nbsp;&nbsp;&nbsp;
-                    <a href="#" class="linka" onclick="zmienWartosc(0, 'branza', 200)">BRANŻA</a><br/>
-                    <a href="#" class="losuj" onclick="zmienWszystko(200)">WSZYSTKO</a>&nbsp;&nbsp;&nbsp;
+                    <a href="#" class="linka" onclick="zmienWartosc(0, 'prefix', 200);return false;">PREFIKS</a>&nbsp;&nbsp;&nbsp;
+                    <a href="#" class="linka" onclick="zmienWartosc(0, 'infix', 200);return false;">INFIKS</a>&nbsp;&nbsp;&nbsp;
+                    <a href="#" class="linka" onclick="zmienWartosc(0, 'sufix', 200);return false;">SUFIKS</a>&nbsp;&nbsp;&nbsp;
+                    <a href="#" class="linka" onclick="zmienWartosc(0, 'branza', 200);return false;">BRANŻA</a><br/>
+                    <a href="#" class="losuj" onclick="zmienWszystko(200);return false;">WSZYSTKO</a>&nbsp;&nbsp;&nbsp;
                     <a href="#" data-href="https://rozdzielchleb.pl/kody/zalozfirmy/" onclick="udostepnij()" class="sharing">UDOSTĘPNIJ</a>
                 </div>
             </div>
@@ -74,6 +74,13 @@
             </a>
         </div></center>
     </div>
+
+    <!-- BOX MOBILNY -->
+    <div class="telefon">
+        <p>Generator nie mieści się na ekranie.<br/>Użyj komputera bądź zusomatu.</p>
+        <a href="https://rozdzielchleb.pl"><img src="img/duszek.png"></a>
+    </div>
+
 
 </body>
 </html>
