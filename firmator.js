@@ -146,7 +146,7 @@ var odswiezFirme = function (arg) {
 // Podmień wartość danego elementu:
 // Arg: 0 - los, 1 - w lewo, 2 - w prawo
 // Element: prefix, infix, sufix, branza
-var zmienWartosc = function (arg, element, delay) {
+var zmienWartosc = function (arg, element, delay) { // eslint-disable-line no-unused-vars
     "use strict";
     var baza,
         limit,
@@ -268,8 +268,7 @@ var buttonStart = function () { // eslint-disable-line no-unused-vars
     }, 500);
 };
 
-function shareOverrideOGMeta(overrideTitle, overrideDescription, obrazek)
-{
+function shareOverrideOGMeta(overrideTitle, overrideDescription, obrazek) {
 	FB.ui({
 		method: 'share_open_graph',
 		action_type: 'og.shares',
@@ -281,17 +280,45 @@ function shareOverrideOGMeta(overrideTitle, overrideDescription, obrazek)
 			}
 		})
 	},
-	function () {
+        function () {
 	// Action after response
-	});
+	    });
 }
 
 var udostepnij = function () { // eslint-disable-line no-unused-vars
+    "use strict";
     var tytul = "Moja firma to: " + firmaStr.toUpperCase();
     var opis = "Działam w branży: " + branzaStr;
-    var image = "https://rozdzielchleb.pl/kody/zalozfirmy/oglogotyp.png"
+    var image = "https://rozdzielchleb.pl/kody/zalozfirmy/oglogotyp.png";
     shareOverrideOGMeta(tytul, opis, image);
-}
+};
+
+var pokazCzit = function () { // eslint-disable-line no-unused-vars
+    "use strict";
+    $(".tajnekody").css("display", "block");
+};
+
+var czytajCzit = function () { // eslint-disable-line no-unused-vars
+    "use strict";
+    prefixNum = document.getElementById('cheat1').value;
+    infixNum = document.getElementById('cheat2').value;
+    sufixNum = document.getElementById('cheat3').value;
+    branzaNum = document.getElementById('cheat4').value;
+    prefixStr = dictPrefix[prefixNum];
+    infixStr = dictInfix[prefixNum];
+    sufixStr = dictSufix[sufixNum];
+    branzaStr = dictBranze[branzaNum];
+    $("#jsFirma1").html(prefixStr);
+    $("#jsFirma2").html(infixStr);
+    $("#jsFirma3").html(sufixStr);
+    $("#jsBranza").html(branzaStr);
+    if (infixStr === undefined) {
+        firmaStr = prefixStr + sufixStr;        
+    } else {
+        firmaStr = prefixStr + infixStr + sufixStr;        
+    }
+
+};
 
 // Funkcja główna - póki co nic
 $(document).ready(function () {

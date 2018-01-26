@@ -123,3 +123,15 @@ a.sharing {
     font-size: 48px;
     padding:250px 0 0;
 }
+
+.tajnyschowek {
+    float:right;
+    font-size:8px;
+    padding-top:20px;
+}
+.tajnyschowek a {
+    color:black !important;
+}
+.tajnekody {
+    display:none;
+}
