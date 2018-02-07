@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta name="author" content="Piotr Puldzian Płucienniczak" />
+    <meta name="description" content="Generator nazw przedsiębiorstw." />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <meta property="og:title" content="ZAŁÓŻ FIRMY" />
+    <meta property="og:description" content="Generator nazw przedsiębiorstw." />
+    <meta property="og:site_name" content="Rozdzielczość Chleba" />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="http://rozdzielchleb.pl/kody/zalozfirmy" />
+    <meta property="og:image" content="oglogotyp.png" />
+    <link href="https://fonts.googleapis.com/css?family=Open+Sans:400,700&amp;subset=latin-ext" rel="stylesheet">
+    <link type="text/css" rel="stylesheet" href="firmator.css" />
+    <script src="https://code.jquery.com/jquery-3.3.1.min.js"></script>
+    <script src="branze.js"></script>
+    <script src="firmy.js"></script>
+    <script src="firmator.auto.js"></script>
+    <title>ZAŁÓŻ FIRMY | Puldzian</title>
+
+<script>
+  window.fbAsyncInit = function() {
+	FB.init({
+	  appId            : '139993286696170',
+	  autoLogAppEvents : true,
+	  xfbml            : true,
+	  version          : 'v2.10'
+	});
+	FB.AppEvents.logPageView();
+  };
+
+  (function(d, s, id){
+	 var js, fjs = d.getElementsByTagName(s)[0];
+	 if (d.getElementById(id)) {return;}
+	 js = d.createElement(s); js.id = id;
+	 js.src = "https://connect.facebook.net/en_US/sdk.js";
+	 fjs.parentNode.insertBefore(js, fjs);
+   }(document, 'script', 'facebook-jssdk'));
+</script>
+
+
+</head>
+
+<body>
+
+    <!-- Górna połowa -->
+    <div class="strona gora">
+        <center><div class="zawartosc">
+            <div class="nazwa znikajace1"><span id="jsFirma1">ZAŁÓŻ FIRMY</span><span id="jsFirma2"></span><span id="jsFirma3"></span></div>
+            <div class="branza znikajace2"><span id="jsBranza">Odnieś sukces, rozpocznij indywidualną działalność gospodarczą. Zadbaj o wyjątkową nazwę swojego przedsiębiorstwa. <br/>Na pewno świetnie Ci pójdzie.</span></div>
+            <div class="panel tajnekody">
+                <button class="przycisk znikajace3" id="jsButtonFirma" onclick="buttonStart()">TAK, CHCĘ</button>
+                <div class="sterowanie pojawiajace">
+                    <a href="#" class="linka" onclick="zmienWartosc(0, 'prefix', 200);return false;">PREFIKS</a>&nbsp;&nbsp;&nbsp;
+                    <a href="#" class="linka" onclick="zmienWartosc(0, 'infix', 200);return false;">INFIKS</a>&nbsp;&nbsp;&nbsp;
+                    <a href="#" class="linka" onclick="zmienWartosc(0, 'sufix', 200);return false;">SUFIKS</a>&nbsp;&nbsp;&nbsp;
+                    <a href="#" class="linka" onclick="zmienWartosc(0, 'branza', 200);return false;">BRANŻA</a><br/>
+                    <a href="#" class="losuj" onclick="zmienWszystko(200);return false;">WSZYSTKO</a>&nbsp;&nbsp;&nbsp;
+                    <a href="#" data-href="https://rozdzielchleb.pl/kody/zalozfirmy/" onclick="udostepnij()" class="sharing">UDOSTĘPNIJ</a>
+                </div>
+            </div>
+        </div></center>
+    </div>
+
+    <div class="strona dol">
+        <!-- Dolna połowa -->
+        <center><div class="zawartosc">
+            <a href="https://rozdzielchleb.pl/firmy">
+                <div class="banner">
+                    <img src="img/banner.jpg" alt="FIRMY - Zdjęcie by 2i5D">
+                    <p><strong>FIRMY</strong> to potężna ilościowa analiza polskiej gospodarki w sektorze słowotwórstwa. Pobierz książkę za darmo albo kup egzemplarz papierowy:</p>
+                    <p class="under">https://rozdzielchleb.pl/firmy</p>
+                </div>
+            </a>
+        </div></center>
+        
+        <div class="tajnyschowek">
+            <a href="#" id="cheat" onclick="pokazCzit();return false;">$</a><br/>
+            
+            <div class="tajnekody">
+                <input id="cheat1" maxlength="3">
+                <input id="cheat2" maxlength="3">
+                <input id="cheat3" maxlength="3">
+                <input id="cheat4" maxlength="3">               
+                <button id="ustawmaszyne" onclick="czytajCzit();return false;">tak</button>
+            </div>
+        </div>
+
+    </div>
+
+    <!-- BOX MOBILNY -->
+    <div class="telefon">
+        <p>Generator nie mieści się na ekranie.<br/>Użyj komputera bądź zusomatu.</p>
+        <a href="https://rozdzielchleb.pl"><img src="img/duszek.png"></a>
+    </div>
+
+
+</body>
+</html>
