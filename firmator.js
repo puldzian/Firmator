@@ -268,6 +268,24 @@ var buttonStart = function () { // eslint-disable-line no-unused-vars
     }, 500);
 };
 
+// Naciśnięcie przycisku start!
+var buttonStartKonkurs = function () { // eslint-disable-line no-unused-vars
+    "use strict";
+    var start = 0;
+    // Znika to, co było
+    if (start === 0) {
+        $(".znikajace1").fadeOut(400);
+        $(".znikajace2").fadeOut(400);
+        $(".#jsFirma").html("Zbytech");
+        $(".#jsBranza").html("???");        
+        setTimeout(function () {
+            $(".znikajace1").fadeIn(500);
+            $(".znikajace2").fadeIn(1000);
+        }, 500);
+    }
+
+};
+
 function shareOverrideOGMeta(overrideTitle, overrideDescription, obrazek) {
 	FB.ui({
 		method: 'share_open_graph',

@@ -286,7 +286,7 @@ var buttonStart = function () { // eslint-disable-line no-unused-vars
         $(".znikajace2").fadeIn(1000);
         $(".pojawiajace").fadeIn(1200);
     }, 500);
-    setTimeout(buttonStart,10000);
+    setTimeout(buttonStart,5000);
 };
 
 function shareOverrideOGMeta(overrideTitle, overrideDescription, obrazek) {
